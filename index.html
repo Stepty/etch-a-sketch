@@ -11,19 +11,20 @@
 <body>
     <header>Etch-A-Sketch</header>
 
+    <p id="grid-size">16x16</p>
     <div class="container">
         <div class="selectors">
             <!-- selectors -->
             <input id="colorPicker" type = "color" value="#333333">
             <button id="colorBtn">Choose Color</button>
-            <button id="rainbowBtn">Random Color</button>
-            <button id="eraserBtn">Erase</button>
+            <button id="rainbowBtn">Random Mode</button>
+            <button id="eraserBtn">Eraser</button>
             <button id="clearBtn">Clear</button>
-            <input id="sizeSlider" type="range" value="16" min="1" max="64">
+            <input id="sizeSlider" type="range" value="16" min="1" max="100">
         </div>
         <div class="game-grid">
             <!-- where grid pieces are added-->
-            <div class="gridPiece"></div>
+        
         </div>
     </div>
 
