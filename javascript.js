@@ -14,6 +14,7 @@ document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
 let currentColor = colorWheel.value;
+let mode;
 
 
 // Functions
@@ -37,7 +38,15 @@ function clearGrid(parent) {
 
 function changeGridColor(e) {
     if (e.type === 'mouseover' && !mouseDown) return;
-    e.target.style.backgroundColor = currentColor;
+    if (mode === 'rainbow') {
+        const randomR = Math.floor(Math.random() * 256);
+        const randomG = Math.floor(Math.random() * 256);
+        const randomB = Math.floor(Math.random() * 256);
+        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+    }
+    else {
+        e.target.style.backgroundColor = currentColor;
+    }
 }
 function activeBtn() {
     rainbowBtn.style.removeProperty('background-color');
@@ -59,25 +68,30 @@ sizeSlider.addEventListener('input', () => {
 });
 
 clearBtn.addEventListener('click', () => {
+    mode = 'clear';
     clearGrid(gameGrid)
     changeGridSize(sizeSlider.value);
 });
 colorWheel.addEventListener('input', () => {
     currentColor = colorWheel.value;
+    mode = 'color';
     activeBtn();
     colorBtn.style.backgroundColor = 'grey';
 });
 eraseBtn.addEventListener('click', () => {
     currentColor = '#FFFFFF';
     activeBtn();
+    mode = 'erase';
     eraseBtn.style.backgroundColor = 'grey';
 });
 rainbowBtn.addEventListener('click', () => {
     activeBtn();
     rainbowBtn.style.backgroundColor = 'grey';
+    mode = 'rainbow';
 });
 colorBtn.addEventListener('click', () => {
     activeBtn();
+    mode = 'color';
     colorBtn.style.backgroundColor = 'grey';
     currentColor = colorWheel.value;
 });
