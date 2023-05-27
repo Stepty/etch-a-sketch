@@ -24,6 +24,7 @@ function changeGridSize(size) {
         newPiece.className = 'grid-piece';
         newPiece.addEventListener('mouseover', changeGridColor);
         newPiece.addEventListener('mousedown', changeGridColor);
+        newPiece.addEventListener('click', changeGridColor);
         gameGrid.appendChild(newPiece);
     }
 }
@@ -35,13 +36,22 @@ function clearGrid(parent) {
 }
 
 function changeGridColor(e) {
-    if (e.type === 'mouseover' && mouseDown) {
-        e.target.style.backgroundColor = currentColor;
-    }
+    if (e.type === 'mouseover' && !mouseDown) return;
+    e.target.style.backgroundColor = currentColor;
+}
+function activeBtn() {
+    rainbowBtn.style.removeProperty('background-color');
+    colorBtn.style.removeProperty('background-color');
+    eraseBtn.style.removeProperty('background-color');
 }
 
 
 // Event Listeners
+document.addEventListener('click', () => {
+    if (mouseDown) {
+        currentColor = colorWheel.value;
+    }
+});
 sizeSlider.addEventListener('input', () => {
     clearGrid(gameGrid);
     gridSize.textContent = `${sizeSlider.value}x${sizeSlider.value}`;
@@ -54,9 +64,22 @@ clearBtn.addEventListener('click', () => {
 });
 colorWheel.addEventListener('input', () => {
     currentColor = colorWheel.value;
+    activeBtn();
+    colorBtn.style.backgroundColor = 'grey';
 });
 eraseBtn.addEventListener('click', () => {
     currentColor = '#FFFFFF';
+    activeBtn();
+    eraseBtn.style.backgroundColor = 'grey';
+});
+rainbowBtn.addEventListener('click', () => {
+    activeBtn();
+    rainbowBtn.style.backgroundColor = 'grey';
+});
+colorBtn.addEventListener('click', () => {
+    activeBtn();
+    colorBtn.style.backgroundColor = 'grey';
+    currentColor = colorWheel.value;
 });
 
 // when loaded on page
