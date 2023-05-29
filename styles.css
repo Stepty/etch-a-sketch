@@ -31,13 +31,16 @@ header {
     flex: 1;
     gap: 10px;
     width: 100px;
+    align-items: center;
 }
 .selectors button, input{
-    margin: auto;
     background-color: var(--primary);
     color: black;
     cursor: pointer;
     
+}
+label {
+    text-decoration: underline;
 }
 input[type='color'] {
     width: 80px;

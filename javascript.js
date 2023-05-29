@@ -68,9 +68,18 @@ sizeSlider.addEventListener('input', () => {
 });
 
 clearBtn.addEventListener('click', () => {
-    mode = 'clear';
     clearGrid(gameGrid)
     changeGridSize(sizeSlider.value);
+    activeBtn();
+    if (mode === 'rainbow') {
+        rainbowBtn.style.backgroundColor = 'grey';
+    }
+    else if (mode === 'color') {
+        colorBtn.style.backgroundColor = 'grey';
+    }
+    else if (mode === 'erase') {
+        eraseBtn.style.backgroundColor = 'grey';
+    }
 });
 colorWheel.addEventListener('input', () => {
     currentColor = colorWheel.value;
