@@ -16,7 +16,7 @@ document.body.onmouseup = () => (mouseDown = false);
 let currentColor = colorWheel.value;
 let mode;
 
-
+colorBtn.style.backgroundColor = 'grey';
 // Functions
 function changeGridSize(size) {
     gameGrid.setAttribute('style', 'grid-template-columns: repeat(' + size + ', 1fr);');
